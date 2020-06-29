@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam09</title>
+    <style>
+        div > h2 {
+            color: azure; background-color: brown;
+        }
+        h2 + div {
+            color:crimson; background-color: yellowgreen;
+        }
+        ul > li {
+             color: black; font-size:larger; background-color: white;
+             }
+        li:last-of-type {
+            color:green;
+        } 
+        h2 + h1 { color:blue}
+    </style>
+</head>
+<body>
+    <div id="main">Div 요소의 아이디 #main
+        <h2>선택자_1</h2>
+        <div>아이디 #main 하위의 div 요소1</div>
+        <ul>
+            <li>클래스 선택자</li>
+            <li>아이디 선택자</li>
+            <li>속성 선택자</li>
+        </ul>
+        
+        <h2>선택자_2</h2>
+        <h1>선택자_3</h1>
+    </div>
+</body>
+</html>
