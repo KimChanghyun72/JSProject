@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/function.html</title>
+</head>
+<body>
+    <script>
+        //JS에서는 타입 선언의 의미가 없어서 사용되지 않음. 타입은 사용 시점에 정해짐. 
+        function sum(a, b){
+            return a + b;
+        }
+        //숫자끼리는 연산을 하고 문자끼리는 문자를 붙이네. 신박한데.
+        var result = sum(10, 20);
+        console.log("result : " + result);
+        
+        result = sum("hello ", "world");
+        console.log("result : " + result);
+        //JS에서는 변수에 function 명령을 넣을 수 있다.
+        var fnc = function(a, b){return a * b;}
+
+        console.log(fnc);
+        console.log(fnc(2,3));
+
+        var fnc2 = function(){
+            document.write("hello");
+        }
+        fnc2();
+        document.write("<br>");
+
+        (function (){
+            document.write("Hello, World");
+        })();
+    </script>
+</body>
+</html>

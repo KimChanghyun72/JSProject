@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/object.html</title>
+</head>
+<body>
+    <script>
+        
+        //객체 내부의 요소를 함수 안에 할당이 되네.
+        var person = {
+            firstName: "Kildong",
+            lastName: "Hong",
+            age: 20,
+            fullName: function(){return this.firstName + this.lastName} 
+        }
+
+        console.log(person.firstName, person.lastName);
+        console.log(person.fullName());
+        //JS는 타입체크에 관대하기 때문에 F12로 문자열, 객체 출력 된 것 확인 가능.
+        
+        var anyAry = [1, 2, 3, 4, 'hello', person];
+        for(var i=0; i<anyAry.length; i++){
+            console.log(anyAry[i]);
+        }
+
+        console.log(anyAry[5].firstName);
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/basic.html</title>
+    <script src="basic.js"></script>
+    <!-- js는 대소문자 구분 필요 -->
+    <!-- interpreter 언어는 줄 순차적으로 해석함. -->
+    <script>
+        var num = 'Hello';
+        document.write(num); /*html에 출력 */
+        console.log(num); /*console에 출력 */
+        window.alert(num); /*window 경고창에 출력 */
+    </script>
+</head>
+<body>
+        <p id="show">World</p>
+    <script>
+        document.getElementById("show").innerHTML = 'Hello';
+    </script>
+</body>
+</html>
