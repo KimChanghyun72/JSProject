@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img { float: right; margin:0 0 10px 10px;}
+    </style>
+</head>
+<body>
+    <!-- img 경로 따로 지정해야겠는데 -->
+    <p>float 속성은 웹 문서의 레이아웃을 설계하는 과정에서 많이 사용하는 속성입니다.</p>
+    <p><img src="dialog-info.png" alt="image" width="140" height="140">
+        ============================================================
+
+        SYS> show parameter db_create =>OMF parameter 확인
+        ==>DB_CREATE_FILE_DEST => TABLESPACE의 datafile의 OMF파일의 경로를 지정.
+        
+        db_create_online_log_dest_1  =>redo log file의 경로를 설정(다중화 필요한거라 최대 5개)
+        
+        SYS> alter system set db_create_file_dest='/home/oracle/';
+        SYS> show parameter db_create =>value가 설정됨을 확인.
+        
+        SYS> create tablespace test; =>간단하게 tablespace가 만들어짐을 확인.
+        SYS> @q_dbf
+        SYS> ; 
+          1  SELECT tablespace_name, file_name, bytes/1024/1024 AS file_size
+          2* FROM dba_data_files
+        TABLESPACE_NAME FILE_NAME                                           FILE_SIZE
+        --------------- -------------------------------------------------- ----------
+        TEST            /home/oracle/ORCL/datafile/o1_mf_test_hhm3gps4_.dbf        100
+            ==>omf 파일 작성 규칙에 따른 tablespace 파일 생성 확인.
+        
+        SYS> create tablespace sales   ==>사이즈 조정도 가능. 경로지정이 Flash recovery area와 유사함.
+          2  datafile size 20m;
+        
+        SYS> drop tablespace sales including contents; =>'datafiles'문구를 안넣어도tablespace가 삭제됨.
+        SYS> ! ls /home/oracle/ORCL/datafile
+        o1_mf_test_hhm3gps4_.dbf
+        
+        SYS> create tablespace orders
+          2  datafile '/home/oracle/orders01.dbf' size 20m;
+    </p>
+
+</body>
+</html>
