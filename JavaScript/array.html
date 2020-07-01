@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array.html</title>
+</head>
+<body>
+    <script>
+        var ary = ['hong', 'kim', 'park'];
+        for(var i=0; i<ary.length; i++){
+            ary[i];
+        }
+        ary[0] = 'hwang';
+        ary[1] = 'lee';
+        for(name of ary){
+            console.log(name);
+        }
+
+        var ary2 = new Array('hong', 'kim', 'park');
+
+        var person = {
+            firstName: 'Kildong',
+            lastName: 'Hong',
+            age: 30
+        }
+        console.log(person.firstName);
+        console.log(person["firstName"]); //firstName, lastName ->key value. 객체는 key value로 값을 가져옴.
+        console.log(person[0]); //undefined. 이건 배열이 아니라 객체.
+        console.log("==============================")
+        for(p in person){
+            console.log("필드명: " + p + ", 값: " + person[p]); //p => person 내부의 field명들. 
+            //person[p]==person["firstName", "lastName", "age"]
+        }//향상된 for문에서 배열은 of, 객체는 in 을 쓴다는 게 차이점.
+
+        var fruits = ['banana','apple','orange','mango'];
+        document.write("<ul>");
+        for(kinds of fruits){
+            document.write("<li>" + kinds + "</li>");
+        }
+        document.write("</ul>");
+
+        document.write("<ol>");
+        fruits.forEach(function(a,b,c){
+            console.log(a,b,c);
+            document.write("<li>" + a + "</li>")
+        }); //a=index, b=length, c=array 로 나왔는데 아무리 봐도 적당히 적어서 나온것들 그냥 보여주는용도같음.
+        document.write("</ol>");
+
+        var persons = [];
+        var person1 = {
+            firstName:"Kildong",
+            lastName:"Hong",
+            age:20
+        }
+        var person2 = {
+            firstName:"Inch",
+            lastName:"Kim",
+            age:25
+        }
+        var person3 = {
+            firstName:"Taco",
+            lastName:"Park",
+            age:30
+        }
+
+        persons[0] = person1;
+        persons.push(person2);
+        persons.push(person3);
+
+        for(i of persons){
+            console.log(i.firstName, i.lastName, i.age);
+        }
+        persons.forEach(function (obj, idx, ary){ //이거 순서는 외워야되나..
+            console.log(obj, idx, ary);
+        });
+
+        
+        document.write('<table border="1">');
+        document.write('<tr>');
+        for(col_Name in person1){
+            document.write('<th>' + col_Name + '</th>');
+        }
+        document.write('</tr>');
+
+        for(person of persons){
+            document.write('<tr>')
+            for(elmt in person){
+                document.write('<td>' + person[elmt] + '</td>');
+            }
+            document.write('</tr>');
+        }
+        
+        document.write('</table>');
+        document.write('<br>');
+
+        //교수님 방법.
+        document.write('<table border="1">');
+
+            document.write('<tr>');
+        for(col_Name in person1){
+            document.write('<th>' + col_Name + '</th>');
+        }
+        document.write('</tr>');
+
+        persons.forEach(function(elm){
+            document.write("<tr>");
+            document.write("<td>" + elm.firstName + "</td><td>"
+                + elm.lastName + "</td><td>"
+                + elm.age + "</td>");
+            document.write("</tr>");
+        });
+        document.write("</table>");//forEach, 요소로 객체를 받아오기. 이 두 개가 백미네.
+
+        document.write('<br>');
+
+        //함수를 따로 빼내서 만듬.
+        document.write('<table border="1">');
+
+        document.write('<tr>');
+        for(col_Name in person1){
+            document.write('<th>' + col_Name + '</th>');
+            }
+        document.write('</tr>');
+
+        persons.forEach(showTable); //빼낸 함수 대입. //callback function
+        //() 는 해상 함수를 실행하겠다는 의미. 따라서 forEach를 실행하니까 ()가 붙음.
+        //showTalbe은 해당 함수의 정의만을 가져오는 것이지 실행하는 것이 아니다.
+        document.write("</table>");
+        
+        function showTable(elm){
+            document.write("<tr>");
+            document.write("<td>" + elm.firstName + "</td><td>"
+                + elm.lastName + "</td><td>"
+                + elm.age + "</td>");
+            document.write("</tr>");
+        };//함수를 이렇게 따로 빼내면 재사용이 되니까 좋지.
+
+        var persons = ['hong','park','hwang','kim'];
+        //persons.sort(); //사전식 배열로 정렬. 
+        //sort가 기본적으로는 가나다 순이라는데 문자를 2진변환해서 비교하는 게 디폴트인듯?
+        persons = [20,12,1,100,10]; //2진수로 바꿔서 정렬함.
+
+        for( person of persons){
+            document.write( person +", ");
+        }
+        document.write('<br>');
+        
+        persons.sort();
+        persons.sort(function(a,b){
+            return b - a; //- 오름차순, + 내림차순.
+        });//이 메소드는 10진수 그대로 비교해서 차순을 결정.2진으로 변환하는 과정이 없으니 10진수비교.
+
+        persons = [person1, person2, person3];
+        persons.sort(function (a, b){
+            if(a.age > b.age)//if(a.firstName > b.firstName)
+                return -1; //내림차순
+                //return 1; //오름차순
+            else if(a.age < b.age)//else if(a.firstName < b.firstName)
+                return 1;
+                //return -1;
+            else 
+                return 0;
+            //return a.age - b.age;
+        });
+
+
+
+        for( p of persons){    
+            document.write( p.lastName +" " + p.age + ", ");
+        }
+        
+    </script>
+</body>
+</html>

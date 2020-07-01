@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/string.html</title>
+</head>
+<body>
+    <script>
+        var str = "Hello"; //typeof str -> string //js에서는 string이 기본 타입.
+        var str2 = new String("Hello");
+        console.log(str == str2); //값만 비교
+        console.log(str === str2); //타입까지 같이 비교
+
+        str = 'locate Please locate where "locate" occurs!';
+        console.log(str.indexOf('locate')); //문장의 몇 번째에 해당 단어가 위치하는지.
+        console.log(str.indexOf('locate', 10));
+        console.log(str.lastIndexOf('locate')); //문장의 몇 번째에 해당 단어가 있는지 뒤에있는 단어부터 찾기.
+
+        console.log(str.search('locate'));
+
+        var result = str.slice(7, 13);//7번부터 13번까지 가져옴. //substring, substr
+        document.write('<b>' + result + '</b>');
+
+        result = str.substr(7, 13);//7번부터 13개를 가져옴. 
+        document.write('<h1>' + result + '</h1>');
+
+        result = str.replace('locate', 'rocate'); //이건 첫번째 것 하나만 바꿈.
+        result = str.replace(/locate/g, 'rocate'); //이건 전체를 바꿈. 정규표현식 썼다는데 가볍게라도 알려주시지.
+        console.log(result);
+
+        result = str.toLowerCase();
+        console.log(result);
+        result = str.toUpperCase();
+        console.log(result);
+    
+        result = "Hello".concat(" World!", "Welcome");
+        console.log(result);
+
+        var sp = "banana,orange,apple".split(","); //구분해서 잘라낸 다음 배열 생성.
+
+        for(i of sp){   //향상된 for문장.
+            console.log(i);
+        }
+    </script>
+</body>
+</html>
