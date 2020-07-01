@@ -32,7 +32,9 @@ document.write('</tr>');
 // }
 
 for(var i=0;i<35; i++){
-    
+    if(i==0){
+        document.write('<tr><td style="background-color:red;"></td>');
+    }
     if(i%7==0)
         document.write('<tr>');
     if((i>0)&&(i<31))
