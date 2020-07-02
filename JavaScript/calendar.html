@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/calendar.html</title>
-    <script src="calendar.js"></script>
+    <!-- <script src="calendar.js"> -->
+    <script>
+        var stat = 0;
+        function showCalendar(year, month) {
+            var today = new Date(year,month-1,1);
+            console.log(today.getDay());
+            var lastday = new Date(year, month, 0);
+            console.log(lastday.getDate());
+            var dayAry = ['일','월','화','수','목','금','토'];
+            var $table = document.createElement('table'); //요소를 만들겠다.
+            //<table></table>
+            $table.setAttribute('border', '1'); //속성을 넣겠다.
+            var $tr = document.createElement('tr');//<tr></tr>
+            for(var i = 0; i < dayAry.length; i++){
+                var $th = document.createElement('th');//<th></th>
+                var $text = document.createTextNode(dayAry[i]);
+                $th.appendChild($text); //appendChild => 요소 안에 자손으로 덧붙이겠다.
+                //<th>일</th>
+                $tr.appendChild($th); //<tr><th>일</th><th>월</th>....</tr>
+            }
+            $table.appendChild($tr);
+
+            $tr = document.createElement('tr');
+            emptyTd = today.getDay();
+            for(var i = 0; i < emptyTd; i++){   //버그잡기 힘들다. <= , <차이는 오류로는 인식을 못하는데..
+                var $td = document.createElement('td');
+                $td.appendChild(document.createTextNode(' '));
+                $tr.appendChild($td);
+            }
+            for(var i=0; i<lastday.getDate(); i++){
+                var $text = document.createTextNode(i + 1);
+                var $td = document.createElement('td');
+                $td.appendChild($text);
+                $tr.appendChild($td);
+                if((i + emptyTd) % 7 == 0){
+                    $td.setAttribute('style', 'background-color:red;');
+                }
+                if((i + emptyTd) % 7 == 6){
+                    $td.setAttribute('style', 'background-color:blue;');
+                    $table.appendChild($tr);
+                    $tr = document.createElement('tr');
+                }
+            }
+            $table.appendChild($tr);
+            document.getElementById("cal").appendChild($table);
+
+            
+        }
+
+    </script>
 </head>
 <body>
-    <button onclick="showCal()">show Cal</button>
+    <!-- <button onclick="showCal()">show Cal</button> -->
+    <button id="cal" onclick="showCalendar(2020,7)">func_showCal</button>
+    <!-- <p id="cal" onclick="showCalendar()">func_showCal</p> -->
+    
 </body>
 </html>

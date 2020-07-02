@@ -12,12 +12,35 @@
     <p class="show"></p>
     <p id="show">dandal</p>
     <button onclick="sum(10,5)">Click</button>
+    <button onclick="mySum()">mySum</button>
+    <button onclick="arrayTest()">arySum</button>
+    <button onclick="funcTest()">funcTest</button>
+    <button onclick="funcTest2(helloFunc2())">funcTest2</button>
     <script>
         console.log(document.getElementsByClassName("show"));
         var cols = document.getElementsByClassName("show");
-        cols[0].innerHTML = "Hello";
-        cols[1].innerHTML = "World";
+        // cols[0].innerHTML = "Hello";
+        // cols[1].innerHTML = "World";
         //document.getElementById("show").innerHTML = "<h1>Hello</h1>";
+
+        function helloFunc2() {
+            document.getElementById("show").innerHTML = "Hello";
+        }
+
+        //let, var, const 차이점 설명하시려는 것 같은데.
+        var x = 10; //전역변수
+        let y = 10; //
+        function getXvalue(){
+            var x = 20; // 함수 안에서 값 변경만 하면 기존 변수를 변경하는 것으로 인식.
+            let y = 20; // but 새로 선언해 버리면 별개의 변수를 선언한 것으로 취급.
+            console.log('x : ' + x);
+            console.log('y : ' + y);
+        }
+        getXvalue();
+        //var x = 10; //var은 중복해서 선언이 가능한 변수.
+        //let y = 10; //let은 중복해서 선언이 불가능한 변수.
+        console.log('x2 : ' + x);
+        console.log('y2 : ' + y);
 
     </script>
 </body>
