@@ -24,6 +24,7 @@
             lastName: 'Hong',
             age: 30
         }
+
         console.log(person.firstName);
         console.log(person["firstName"]); //firstName, lastName ->key value. 객체는 key value로 값을 가져옴.
         console.log(person[0]); //undefined. 이건 배열이 아니라 객체.
@@ -32,7 +33,7 @@
             console.log("필드명: " + p + ", 값: " + person[p]); //p => person 내부의 field명들. 
             //person[p]==person["firstName", "lastName", "age"]
         }//향상된 for문에서 배열은 of, 객체는 in 을 쓴다는 게 차이점.
-
+        
         var fruits = ['banana','apple','orange','mango'];
         document.write("<ul>");
         for(kinds of fruits){
@@ -163,7 +164,7 @@
                 return 0;
             //return a.age - b.age;
         });
-
+        
 
 
         for( p of persons){    
