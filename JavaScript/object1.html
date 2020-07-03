@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/object1.html</title>
+</head>
+<body>
+    <script>
+        //배열에서 요소를 지우는 방식 -> pop, shift, delete[i]
+        //배열에 요소를 넣는 방식 -> push, unshift, ary[i]=var;
+        var person = {
+            name:"Hong",
+            age:20,
+            height:170, //속성
+            eat:function(){ //메소드 or 함수.
+                console.log("eat");
+            }
+        };
+        var person1 = {
+            name:"Hong",
+            age:20,
+            height:170, //속성
+            eat:function(){ //메소드 or 함수.
+                console.log("eat");
+            }
+        };
+        var persons = [person, person1];
+
+        var nm = "name";
+        person.name = "Hwang";
+        console.log(persons);
+        // console.log(persons[0].name);
+        // console.log(persons[0].age);
+        // console.log(persons[0]["height"]);
+        document.write("<p>"+persons[0].name+"</p>");
+        document.write("<p>"+persons[0].age+"</p>");
+        document.write("<p>"+persons[0]["height"]+"</p>");
+        // for(attr in persons[0]){ //아무래도 attr은 개별 요소를 str 형식으로 찾는 것 같아.
+        //     console.log(persons[0][attr]);
+        // }
+        
+        var strAry = [];
+        strAry.push("Hong");
+        strAry.push("Hwang");
+        strAry[strAry.length] = "Park"; //제일 마지막에 넣는다.
+        for(var i=0; i<strAry.length; i++){
+            document.write("<p>"+strAry[i]+"</p>");
+        }
+        strAry.pop(); //마지막 요소 1개 지우는 용도.
+        delete strAry[1]; //지정 요소 지우기.
+        console.log(strAry.length);
+        for(var i=0; i<strAry.length; i++){
+        console.log(strAry[i]);
+        }
+        strAry.unshift("Kwack");
+        strAry.unshift("Kim");
+        console.log("=======================");
+        for(var i=0; i<strAry.length; i++){
+        console.log(strAry[i]);
+        }
+        console.log("=======================");
+        strAry.shift();
+        console.log(strAry.length);
+        for(var i=0; i<strAry.length; i++){
+        console.log(strAry[i]);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="cal">hi</p>
+    <script>
+        var jsonData=[{"id":1,"first_name":"Daisey","last_name":"Ragsdale","email":"dragsdale0@loc.gov","gender":"Female"},
+{"id":2,"first_name":"Teressa","last_name":"Mathy","email":"tmathy1@elegantthemes.com","gender":"Female"},
+{"id":3,"first_name":"Courtnay","last_name":"Thurber","email":"cthurber2@feedburner.com","gender":"Male"},
+{"id":4,"first_name":"Kit","last_name":"Jeannaud","email":"kjeannaud3@bizjournals.com","gender":"Female"},
+{"id":5,"first_name":"Kalindi","last_name":"Lowth","email":"klowth4@epa.gov","gender":"Female"},
+{"id":6,"first_name":"Emmanuel","last_name":"Speeding","email":"espeeding5@twitter.com","gender":"Male"},
+{"id":7,"first_name":"Doy","last_name":"Lukacs","email":"dlukacs6@eepurl.com","gender":"Male"},
+{"id":8,"first_name":"Germain","last_name":"Nutley","email":"gnutley7@myspace.com","gender":"Male"},
+{"id":9,"first_name":"Vannie","last_name":"Summerside","email":"vsummerside8@cmu.edu","gender":"Female"},
+{"id":10,"first_name":"Gar","last_name":"Balchin","email":"gbalchin9@shareasale.com","gender":"Male"},
+{"id":11,"first_name":"Darrick","last_name":"Whitsey","email":"dwhitseya@hhs.gov","gender":"Male"},
+{"id":12,"first_name":"Augustus","last_name":"Audley","email":"aaudleyb@apache.org","gender":"Male"},
+{"id":13,"first_name":"Alfredo","last_name":"Brinded","email":"abrindedc@tmall.com","gender":"Male"},
+{"id":14,"first_name":"Fin","last_name":"Henker","email":"fhenkerd@hostgator.com","gender":"Male"},
+{"id":15,"first_name":"Gertrud","last_name":"Rozzell","email":"grozzelle@huffingtonpost.com","gender":"Female"}];
+console.log(jsonData);
+document.write("<h2 align='center'>사원목록</h2>");
+document.write("<table align='center' border='1'>");
+
+jsonData.forEach(function(o,i,a){ //for문 써서 o.속성을 반복문돌리면 더 편하다.
+    console.log(o, i, a);
+    console.log(o[1]);
+    document.write("<tr>");
+    document.write("<td>"+o.id+"</td>");
+    document.write("<th>"+o.first_name+"</th>");
+    document.write("<td>"+o.last_name+"</td>");
+    document.write("<td>"+o.email+"</td>"); 
+    document.write("<td>"+o.gender+"</td>");
+    document.write("</tr>");
+});
+document.write("</table>");
+
+//createElement 방식 사용.
+var $table = document.createElement('table');
+
+var $tr = document.createElement('tr');
+    for(a in jsonData[0]){
+        var $th = document.createElement('th');
+        var $text = document.createTextNode(a);
+        $th.appendChild($text);
+        $tr.appendChild($th);
+    }
+    $table.appendChild($tr);
+
+$table.setAttribute('border', '1');
+$table.setAttribute('align', 'center');
+jsonData.forEach(function(o){
+    var $tr = document.createElement('tr');
+    for(a in o){
+        var $td = document.createElement('td');
+        var $text = document.createTextNode(o[a]);
+        $td.appendChild($text);
+        $tr.appendChild($td);
+       }
+    $table.appendChild($tr);
+});
+
+document.getElementById("cal").appendChild($table);
+var $br = document.createElement("br");
+document.getElementById("cal").appendChild($br);
+
+//교수님 해제
+var titles =["id", "first_name","last_name","email","gender"];
+var $table = document.createElement("table");
+$table.setAttribute("border", "1");
+    //col_name
+var $tr = document.createElement("tr");
+for(field of titles){
+    var $th = document.createElement("th");
+    var $text = document.createTextNode(field.replace("_","").toUpperCase());
+    $th.appendChild($text);
+    $tr.appendChild($th);
+}
+$table.appendChild($tr);
+    //contents
+jsonData.forEach(function(o,i,a){
+    var $tr = document.createElement("tr");
+    for(field of titles){
+        var $td = document.createElement("td");
+        var $text = document.createTextNode(o[field]);
+        $td.appendChild($text);
+        $tr.appendChild($td);
+    }
+    $table.appendChild($tr);
+});
+   
+    //title
+var show = document.getElementById("cal");
+show.appendChild(document.createElement("h3")
+.appendChild(document.createTextNode("학생목록"))); //제목 생성.
+show.setAttribute("align", "center");   //가운데정렬
+show.setAttribute("class","title");
+show.appendChild($table);
+    </script>
+</body>
+</html>

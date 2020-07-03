@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/object2.html</title>
+</head>
+<body>
+    
+    <script>
+        //slice와 splice 사용방법.
+        //forEach에서의 함수의 사용방법. -> callback함수 쓰거나, 함수를 변수에 넣어서 쓰거나.
+        
+        for(var i=0; i<10; i++){
+            //document.write("<p id='id_"+i+"'>" + i + "</p>");
+            document.write("<p class='col'>" + i + "</p>");
+        }
+
+        var elmtAry = document.getElementsByClassName("col");
+        //console.log(elmtAry);
+        var newAry = [];
+        for(var i=0;i<elmtAry.length;i++){
+            newAry.push(elmtAry[i].innerHTML);
+            //console.log(newAry[i]);
+        }
+
+        var sliceAry = newAry.slice(5); //splice와 slice의 차이점.
+        //console.log(sliceAry);
+
+        var sliceAry1 = newAry.splice(0,3);
+
+        var totalSlice = sliceAry.concat(sliceAry1); //concat = 붙이기
+
+        var sum = 0;
+        // totalSlice.forEach(function (a, b, c){ //value, index, array.
+        //     console.log(a,b);
+        //     //sum += a; //이 때 요소들의 유형은 string인데, 처음 배열 만들때는 숫자였다. 어디서 string로 바뀐거지?
+        //     sum += parseInt(a);
+        // });
+
+        //document.write(sum);
+        //같은 의미를 가진 함수사용방식.
+        document.write( "<ul>");
+        totalSlice.forEach(callbackFunc);
+        document.write("</ul>");
+        //document.write(sum);
+
+        function callbackFunc(a,b,c){
+            console.log(a,b);
+            sum += parseInt(a);
+            document.write("<li> index: " + b + ", value: " + a + "</li>");
+        }
+
+        var callbackFunc = function(a, b, c){
+            console.log(a, b);
+            sum += parseInt(a);
+        };
+    </script>
+</body>
+</html>

@@ -34,7 +34,7 @@ function arrayTest(){
     console.log(result);
 }
 function funcTest(){    //실행함수를 매개로 한 함수를 안에 담고있는 새로운 함수 설정은 실행이 되는데
-    funcTest1(helloFunc1); //왜 함수로 싸지 않고서는 실행이 안되는거지?
+    funcTest1(helloFunc1()); //왜 함수로 싸지 않고서는 실행이 안되는거지?
 } //매개값 문제인가?
 function funcTest1(){
     var hello = document.getElementById("show").innerHTML;

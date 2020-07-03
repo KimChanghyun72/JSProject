@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/calendar.html</title>
     <!-- <script src="calendar.js"> -->
+    
+</head>
+<body>
+    <!-- <button onclick="showCal()">show Cal</button> -->
+    년도:<input type="text" id="year"><br>
+    월:<input type="text" id="month"><br>
+    <button id="cal" onclick="showCalendar()">func_showCal</button>
+    <!-- <p id="cal" onclick="showCalendar()">func_showCal</p> -->
     <script>
         var stat = 0;
         function showCalendar(year, month) {
+            if(stat==0){
+           var year = document.getElementById("year").value;
+           var month = document.getElementById("month").value;
+
             var today = new Date(year,month-1,1);
-            console.log(today.getDay());
-            var lastday = new Date(year, month, 0);
-            console.log(lastday.getDate());
+            console.log(today.getDay()); //getDay() = 요일 가져오는 메소드
+            var lastday = new Date(year, month, 0);        
+            console.log(lastday.getDate()); //getDate() = 날짜 가져오는 메소드
+
             var dayAry = ['일','월','화','수','목','금','토'];
+
             var $table = document.createElement('table'); //요소를 만들겠다.
             //<table></table>
             $table.setAttribute('border', '1'); //속성을 넣겠다.
@@ -49,16 +63,16 @@
             }
             $table.appendChild($tr);
             document.getElementById("cal").appendChild($table);
-
             
+            stat=1;
+            console.log(stat);
+        }else{
+            document.getElementById("cal").innerHTML = "func_showCal";
+            stat=0;
+            console.log(stat);
+        }
         }
 
     </script>
-</head>
-<body>
-    <!-- <button onclick="showCal()">show Cal</button> -->
-    <button id="cal" onclick="showCalendar(2020,7)">func_showCal</button>
-    <!-- <p id="cal" onclick="showCalendar()">func_showCal</p> -->
-    
 </body>
 </html>
