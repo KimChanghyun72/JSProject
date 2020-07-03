@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/event2.html</title>
+</head>
+<body>
+    ID <input type="text" id="idValue">
+    firstName <input type="text" id="firstValue">
+    lastName <input type="text" id="lastValue">
+    <p id="show"></p>
+
+    <script>
+            function onClickFunc(){
+            var $tr = document.createElement("tr");
+
+            var $td = document.createElement("td");
+            var $text = document.getElementById("idValue").value;
+            $td.appendChild(document.createTextNode($text));
+            $tr.appendChild($td);
+
+            var $td = document.createElement("td");
+            var $text = document.getElementById("firstValue").value;
+            $td.appendChild($text);
+            $tr.appendChild($td);
+
+            var $td = document.createElement("td");
+            var $text = document.getElementById("lastValue").value;
+            $td.appendChild($text);
+            $tr.appendChild($td);
+
+            var $td = document.createElement("td");
+            var $button = document.createElement("button");
+            $button.innerHTML = "Click";
+            $button.onclick = onClickFunc();
+            $td.appendChild($button);
+            $tr.appendChild($td);
+            
+
+        }
+
+        var jsonData=[{"id":"", "first_name":"","last_name":""}];
+        var show = document.getElementById("show");
+
+
+        var $table = document.createElement("table");
+        $table.setAttribute("border", "1");
+        var $tr = document.createElement("tr");
+
+        jsonData.forEach(function(o){
+            for( attr in o){
+                var $th = document.createElement("th");
+                var $text = document.createTextNode(attr);
+                $th.appendChild($text);
+                $tr.appendChild($th);
+        }
+        });
+        var $td = document.createElement("td");
+        var $button = document.createElement("button");
+        $button.innerHTML = "Click";
+        
+        $td.appendChild($button);
+        $tr.appendChild($td);
+        
+        $table.appendChild($tr);
+        //$button.onclick = onClickFunc();
+        show.appendChild($table);
+    </script>
+</body>
+</html>

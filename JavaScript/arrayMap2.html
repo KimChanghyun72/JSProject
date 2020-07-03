@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javascript/arrayMap.html</title>
+    <title>javascript/arrayMap2.html</title>
 </head>
 <body>
-
+    <select name="gender" id="gender" onchange="onChangeFunc()">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+        <p id="show"></p>
     <script>
         var jsonData=[{"id":1,"first_name":"Daisey","last_name":"Ragsdale","email":"dragsdale0@loc.gov","gender":"Female"},
         {"id":2,"first_name":"Teressa","last_name":"Mathy","email":"tmathy1@elegantthemes.com","gender":"Female"},
@@ -24,22 +28,37 @@
         {"id":14,"first_name":"Fin","last_name":"Henker","email":"fhenkerd@hostgator.com","gender":"Male"},
         {"id":15,"first_name":"Gertrud","last_name":"Rozzell","email":"grozzelle@huffingtonpost.com","gender":"Female"}];
         console.log(jsonData);
-        var newAry = jsonData.map(function(o,i,a){
-            //o.full_name = o.first_name + "-" + o.last_name;
-            //return o.full_name;
-            //return o;
-            return o.first_name + "-"+ o.last_name;
-        }); //full-name이라는 field 새로 만들어서 추가.
         
-        console.log(newAry);
+        function onChangeFunc(){
+
+        var newAry = jsonData.map(function(o,i,a){
+            o.first_name = o.first_name.toUpperCase();
+            return o;
+        }); //full-name이라는 field 새로 만들어서 추가.
 
         var filterAry = newAry.filter(function(o,i){
-            return i > 3;
-        }); //인덱스값이 3보다 큰 것만 필터링해서 새로운 배열을 만들겠다.
+            return o.gender == document.getElementById("gender").value;
+        }); //gender 값이 태그 선택한것과 같은 값인 것만 배열에 담음.
 
-        for(data of filterAry){
-            document.write(data + "<br>");
-        };
+        console.log(filterAry);
+        var $show = document.getElementById("show");
+
+        //$show.innerHTML = "";
+        var cnt = $show.children.length;
+        for(var i=0; i<cnt; i++){
+            $show.removeChild($show.firstChild);    //firstChild = 태그의 첫 번째 요소.
+        }   //innerHTML은 분석하는 과정이 추가로 있기 때문에 속도가 느리다.
+            //기존 화면 요소 지워주기.
+            //하위자식으로 등록
+
+        filterAry.forEach(function(a){
+            var $text = document.createTextNode(a.first_name + ", " + a.gender);
+            var $li = document.createElement("li");
+            $li.appendChild($text);
+            $show.appendChild($li);
+        });
+
+    }
     </script>
 </body>
 </html>

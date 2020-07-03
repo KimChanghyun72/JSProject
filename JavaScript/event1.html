@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/event1.html</title>
+    <script>
+        function showCurrentTime(){
+            document.getElementById("show").innerHTML = Date();
+            setTimeout('showCurrentTime()', 1000);
+        }
+    </script>
+</head>
+<body>
+    <p id="show"></p>
+    <button onclick="showCurrentTime()" id="btn">Click</button>
+    <script>
+        console.log(this); //현재는 this가 window object를 가리킴.
+        var btn = document.getElementById("btn");
+        //showCurrentTime();
+        // btn.onclick = showCurrentTime;
+        // btn.onmouseover = function(){
+        //     btn.setAttribute("style", "background-color:yellow");
+        // }
+        // btn.onmouseout = function(){
+        //     btn.setAttribute("style", "background-color:null");
+        // }
+        //document.getElementById("btn").onclick = showCurrentTime;
+        var jsonData=[{"id":1,"first_name":"Daisey","last_name":"Ragsdale","email":"dragsdale0@loc.gov","gender":"Female"},
+        {"id":2,"first_name":"Teressa","last_name":"Mathy","email":"tmathy1@elegantthemes.com","gender":"Female"},
+        {"id":3,"first_name":"Courtnay","last_name":"Thurber","email":"cthurber2@feedburner.com","gender":"Male"},
+        {"id":4,"first_name":"Kit","last_name":"Jeannaud","email":"kjeannaud3@bizjournals.com","gender":"Female"},
+        {"id":5,"first_name":"Kalindi","last_name":"Lowth","email":"klowth4@epa.gov","gender":"Female"},
+        {"id":6,"first_name":"Emmanuel","last_name":"Speeding","email":"espeeding5@twitter.com","gender":"Male"}];
+        console.log(jsonData);
+
+            //교수님 해제
+        var titles =["id", "first_name","last_name"];
+        var $table = document.createElement("table");
+        $table.setAttribute("border", "1");
+            //col_name
+        var $tr = document.createElement("tr");
+        for(field of titles){
+            var $th = document.createElement("th");
+            var $text = document.createTextNode(field.replace("_","").toUpperCase());
+            $th.appendChild($text);
+            $tr.appendChild($th);
+        }
+        $table.appendChild($tr);
+            //contents
+        jsonData.forEach(function(o,i,a){
+            var $tr = document.createElement("tr");
+            for(field of titles){
+                var $td = document.createElement("td");
+                var $text = document.createTextNode(o[field]);
+                $td.appendChild($text);
+                $tr.appendChild($td);
+            }
+            $td = document.createElement("td");
+            var $button = document.createElement("button");
+            $button.innerHTML = "Click"; //클릭 버튼
+            $button.onmouseover = function(){
+                this.parentNode.parentNode.style.background = "yellow";
+            }
+            $tr.onmouseover = function(){
+                this.style.background = "blue";
+            }
+            $tr.onmouseout = function(){
+                this.style.background = "";
+            }
+            $button.onmouseout = function(){    //마우스 떼면 기본색.
+                this.parentNode.parentNode.style.background = "";
+            }
+            $button.onclick = function(){   //한 행 삭제.
+                this.parentNode.parentNode.remove();
+            }
+            // $button.onclick = function(){ //클릭 버튼 기능
+            //     this.parentNode.parentNode.style.background = "yellow";
+            // }
+            $td.appendChild($button);
+            $tr.appendChild($td);
+
+            $table.appendChild($tr);
+        });
+        
+            //title
+        var show = document.getElementById("show");
+        show.appendChild(document.createElement("h3")
+        .appendChild(document.createTextNode("학생목록"))); //제목 생성.
+        show.setAttribute("align", "center");   //가운데정렬
+        show.setAttribute("class","title");
+        show.appendChild($table);
+    </script>
+</body>
+</html>
