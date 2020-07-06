@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/node.html</title>
+</head>
+<body>
+    <p id="show">
+        <table border='1' id="tbl">
+            <tr>1번
+                <th>EmpId</th>2번
+                <th>FirstName</th>3번
+                <th>LastName</th>4번
+                <th>Event</th>5번
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>Kildong</td>
+                <td>Hong</td>
+                <td><button >Delete</button></td> <!--빈공간이 있으면 text, 없이 바로(<td><button>이면 text없음.-->
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>Minki</td>
+                <td>Hwang</td>
+                <td><button >Delete</button></td>
+            </tr>
+        </table>
+    </p>
+    <script>
+        console.log(document.getElementById('tbl').childNodes[1].childNodes[2]);
+        console.log(document.getElementById('tbl').childNodes[1].childNodes[2].childNodes[1].childNodes[0]);
+        document.getElementById('tbl').childNodes[1].childNodes[2].childNodes[7].childNodes[0].childNodes[0].nodeValue="Save";
+        document.getElementById('tbl').childNodes[1].childNodes[2].childNodes[7].childNodes[0].style.background='aqua'
+        console.log(document.getElementById('tbl').childNodes[1].childNodes[2].childNodes[7].childNodes[0].childNodes[0]);
+    </script>
+</body>
+</html>

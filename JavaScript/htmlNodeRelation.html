@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Dom Tutorial</title>
+</head>
+
+<body id="bdy"> <!-- 빈 공간처럼 보이지만 이 공간이 textNode이자 첫번째 자식임-->
+    <h1>DOM Lesson one</h1>
+    <p id="hello">Hello world!</p>
+    <script>
+        document.getElementById('bdy').childNodes[1];
+        document.getElementById('bdy').childNodes[1].childNodes[0];
+        document.getElementById('bdy').childNodes[1].childNodes[0].nodeValue;
+
+        document.getElementById('hello').previousSibling
+        document.getElementById('hello').previousSibling.previousSibling
+        document.getElementById('hello').parentNode
+    </script>
+</body>
+</html>

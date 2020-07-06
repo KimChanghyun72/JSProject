@@ -4,53 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/event2.html</title>
+    <script>
+        function showCurrentTime(){
+            document.getElementById("show").innerHTML = Date();
+        }
+        function btnFunc(){  //button만드는 부분만 따로 함수로 빼냄.
+            // var $td = document.createElement("td");
+            // var $button = document.createElement("button");
+            // $button.innerHTML="Click";
+            $button.onmouseover=function(){
+                this.parentNode.parentNode.style.background = "yellow";
+            }
+            $button.onmouseout = function(){
+                this.parentNode.parentNode.style.background = "";
+            }
+            $button.onclick = function(){
+                this.parentNode.parentNode.remove();
+            }
+            // $td.appendChild($button);
+            // $tr.appendChild($td);
+        }
+        function btnClassFunc(){
+            var btns = document.getElementsByClassName('btnClass');
+            var btns
+            for(var i=0; i<btns.length; i++){
+                btns[i].onclick = function(){
+                    this.parentNode.parentNode.remove();
+                }
+                btns[i].onmousevoer = function(){
+                    this.parentNode.parentNode.style.background = "yellow";
+                }
+                btns[i].onmouseout = function(){
+                    this.parentNode.parentNode.style.background = "";
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     ID <input type="text" id="idValue">
-    firstName <input type="text" id="firstValue">
+    firstName <input type="text" id="firstValue">   
     lastName <input type="text" id="lastValue">
+    <button id="btn">Click</button>
     <p id="show"></p>
 
     <script>
-
-
+        //교수님 해법
         var jsonData=[{"id":"", "first_name":"","last_name":""}];
-        var show = document.getElementById("show");
 
-
+        var btn= document.getElementById("btn");
         var $table = document.createElement("table");
         $table.setAttribute("border", "1");
+        var show = document.getElementById("show");
 
-
-        function onClickFunc(){ //button function
-            var $tr = document.createElement("tr");
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("idValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("firstValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("lastValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
+        btn.onclick = function(){ //click하면 1열 추가.
+            var inputs = document.getElementsByTagName("input"); //tagName으로 선별
+            var $tr=document.createElement("tr");
+            for(var i=0; i<inputs.length; i++){ //선별된 tagName을 배열처럼 사용.
+                var $td = document.createElement("td");
+                var $text = document.createTextNode(inputs[i].value); 
+                $td.appendChild($text);
+                $tr.appendChild($td);
+            }
             var $td = document.createElement("td");
             var $button = document.createElement("button");
-            $button.innerHTML = "Click";
-            $button.setAttribute("class","btn");
+            $button.innerHTML="Click";
+            $button.onmouseover=function(){
+                this.parentNode.parentNode.style.background = "yellow";
+            }
+            $button.onmouseout = function(){
+                this.parentNode.parentNode.style.background = "";
+            }
+            $button.onclick = function(){
+                this.parentNode.parentNode.remove();
+            }
+
             $td.appendChild($button);
             $tr.appendChild($td);
-            
             $table.appendChild($tr);
-            show.appendChild($table);
         }
-    
+        show.appendChild($table);   //onclick으로 새로운 열 만드는 부분.
+
+
+        //col_num 만드는 부분.
         var $tr = document.createElement("tr");
         
         jsonData.forEach(function(o){
@@ -61,48 +97,106 @@
                 $tr.appendChild($th);
         }
         });
-        var $td = document.createElement("td");
-        var $button = document.createElement("button"); 
-        $button.innerHTML = "Click";
-        $button.onclick=
-        function onClickFunc(){ //button function
-            var $tr = document.createElement("tr");
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("idValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("firstValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
-            var $td = document.createElement("td");
-            var $text = document.createTextNode(document.getElementById("lastValue").value);
-            $td.appendChild($text);
-            $tr.appendChild($td);
-
-            var $td = document.createElement("td");
-            var $button = document.createElement("button");
-            $button.innerHTML = "Click";
-            $button.setAttribute("class","btn");
-            $td.appendChild($button);
-            $tr.appendChild($td);
-            
-            $table.appendChild($tr);
-            show.appendChild($table);
-        }
-
-        $button.setAttribute("class","btn"); //버튼에 btn 클래스
-        
-        $td.appendChild($button);
-        $tr.appendChild($td);
         
         $table.appendChild($tr);
         show.appendChild($table);
 
-        document.getElementsByClassName("btn").setAttribute("onclick","onClickFunc");
+
+        //초기값, 버튼에 onclick함수 등록.
+        //주석 친 부분 function for문으로 깔끔하게 정리하기.
+
+        //=======================================================================//
+        // var jsonData=[{"id":"", "first_name":"","last_name":""}];
+        // var show = document.getElementById("show");
+
+
+        // var $table = document.createElement("table");
+        // $table.setAttribute("border", "1");
+        
+
+        // function onClickFunc(){ //button function
+        //     var $tr = document.createElement("tr");
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("idValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("firstValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("lastValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $button = document.createElement("button");
+        //     $button.innerHTML = "Click";
+        //     $button.setAttribute("class","btn");
+        //     $td.appendChild($button);
+        //     $tr.appendChild($td);
+            
+        //     $table.appendChild($tr);
+        //     show.appendChild($table);
+        // }
+    
+        // var $tr = document.createElement("tr");
+        
+        // jsonData.forEach(function(o){
+        //     for( attr in o){
+        //         var $th = document.createElement("th");
+        //         var $text = document.createTextNode(attr);
+        //         $th.appendChild($text);
+        //         $tr.appendChild($th);
+        // }
+        // });
+        // var $td = document.createElement("td");
+        // var $button = document.createElement("button"); 
+        // $button.innerHTML = "Click";
+        // $button.onclick=
+        // function onClickFunc(){ //button function
+        //     var $tr = document.createElement("tr");
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("idValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("firstValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $text = document.createTextNode(document.getElementById("lastValue").value);
+        //     $td.appendChild($text);
+        //     $tr.appendChild($td);
+
+        //     var $td = document.createElement("td");
+        //     var $button = document.createElement("button");
+        //     $button.innerHTML = "Click";
+        //     $button.setAttribute("class","btn");
+        //     $td.appendChild($button);
+        //     $tr.appendChild($td);
+            
+        //     $table.appendChild($tr);
+        //     show.appendChild($table);
+        // }
+
+        // $button.setAttribute("class","btn"); //버튼에 btn 클래스
+        
+        // $td.appendChild($button);
+        // $tr.appendChild($td);
+        
+        // $table.appendChild($tr);
+        // show.appendChild($table);
+
+        // document.getElementsByClassName("btn").setAttribute("onclick","onClickFunc");
+
+
     </script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Finding HTML Elements by Query Selector</h2>
+
+<p>Hello World!</p>
+
+<p class="intro">The DOM is very useful.</p>
+<p class="intro">This example demonstrates the <b>querySelectorAll</b> method.</p>
+
+<p id="demo"></p>
+
+<script>
+var x = document.querySelectorAll("p.intro"); //nodeList =>forEach 사용가능.
+//x = document.getElementsByClassName('intro');//HTMLCollection => forEach 사용하면 오류남.
+console.log(x);
+var demo = document.getElementById('demo');
+x.forEach(function(a){
+    demo.innerHTML += a.innerHTML+"<br>";
+});
+</script>
+
+</body>
+</html>
