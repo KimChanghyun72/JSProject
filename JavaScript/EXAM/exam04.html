@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXAM/exam04.html</title>
 </head>
+
 <body>
-    
+
     학번: <input type="text" id="idValue"><br>
     이름: <input type="text" id="nameValue"><br>
     학년 <input type="text" id="gradeValue"><br>
     전공 <input type="text" id="majorValue"><br>
     <button id="btnSubmit">등록</button>
     <br><br>
-    
-        학년 보기<select id="subject" >
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-        <p id="show"></p>
-        <button id="check">확인</button>
-        
-    
+
+    학년 보기<select id="subject" onchange="onChangeFunc">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <p id="show"></p>
+    <button id="check">확인</button>
+
+
     <script>
         var students = [];
         var student1 = {
@@ -33,12 +35,15 @@
             major: "영문과"
         }
         students[0] = student1;
-        document.getElementById("btnSubmit").onclick = function(){
+        function onChangeFunc(){
+            
+        }
+        document.getElementById("btnSubmit").onclick = function () {
             var idValue = document.getElementById("idValue").value;
             var nameValue = document.getElementById("nameValue").value;
             var gradeValue = document.getElementById("gradeValue").value;
             var majorValue = document.getElementById("majorValue").value;
-            var student={
+            var student = {
                 studentNo: idValue,
                 name: nameValue,
                 grade: gradeValue,
@@ -50,47 +55,54 @@
         }
 
 
-    //    for(var i=0; i<students.length; i++){
-    //        document.write(students[i].studentNo);
-    //    }
+        //    for(var i=0; i<students.length; i++){
+        //        document.write(students[i].studentNo);
+        //    }
 
-    
-    var $table = document.createElement("table");
-    $table.setAttribute("border", "1");
-    var $tr = document.createElement("tr");
-    for(elmt in student1){
+
+        var $table = document.createElement("table");
+        $table.setAttribute("border", "1");
+        // $table.setAttribute("id","table");
+        var $tr = document.createElement("tr");
+        for (elmt in student1) {
             var $th = document.createElement("th");
             var $text = document.createTextNode(elmt);
             $th.appendChild($text);
             $tr.appendChild($th);
         }
         $table.appendChild($tr);
-            //document.write(gradeVal);
-        
-        
-            document.getElementById("check").onclick=function(){
-                //document.getElementById("show")
-                var gradeVal = document.getElementById("subject").value;
-                
-                console.log(gradeVal);
-                var filterAry = students.filter(function(o){
-                    return o.grade == gradeVal;
-                });
-                
-                for(data of filterAry){
-                    var $tr = createElement("tr");
-                    for(elmt in data){
-                        var $td = createElement("td");
-                        var $text = createTextNode(data[elmt]);
-                        $td.appendChild($text);
-                        $tr.appendChild($td);    
-                    }
-                    $table.appendChild($tr);        
+        //document.write(gradeVal);
+
+
+        document.getElementById("check").onclick = function () {
+            //document.getElementById("show")
+            var gradeVal = document.getElementById("subject").value;
+
+            console.log(gradeVal);
+            var filterAry = students.filter(function (o) {
+                return o.grade == gradeVal;
+            });
+            // var $table = document.getElementById("table");
+            // // var $show = document.getElementById("show");
+            // var cnt = $table.children.length;
+            // for (var i = 0; i < cnt; i++) {
+            //     $show.removeChild($table.firstChild);    //firstChild = 태그의 첫 번째 요소.
+            // }
+
+            for (data of filterAry) {
+                var $tr = document.createElement("tr");
+                for (elmt in data) {
+                    var $td = document.createElement("td");
+                    var $text = document.createTextNode(data[elmt]);
+                    $td.appendChild($text);
+                    $tr.appendChild($td);
                 }
+                $table.appendChild($tr);
             }
+        }
         document.getElementById("show").appendChild($table);
 
     </script>
 </body>
-    
+
 </html>
