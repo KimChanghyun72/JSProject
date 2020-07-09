@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javascript/jsonAryEventListener.html</title>
+    <title>EXAM/exam05.html</title>
+    <style>
+        #title {
+            background-color:green;
+        }
+        #title:hover{
+            background-color:#ddd;
+        }
+    </style>
 </head>
 <body>
-    <p id="cal">hi</p>
+    <p id="cal"></p>
     <script>
-        var jsonData=[{"id":1,"first_name":"Daisey","last_name":"Ragsdale","email":"dragsdale0@loc.gov","gender":"Female"},
+         var jsonData=[{"id":1,"first_name":"Daisey","last_name":"Ragsdale","email":"dragsdale0@loc.gov","gender":"Female"},
 {"id":2,"first_name":"Teressa","last_name":"Mathy","email":"tmathy1@elegantthemes.com","gender":"Female"},
 {"id":3,"first_name":"Courtnay","last_name":"Thurber","email":"cthurber2@feedburner.com","gender":"Male"},
 {"id":4,"first_name":"Kit","last_name":"Jeannaud","email":"kjeannaud3@bizjournals.com","gender":"Female"},
@@ -25,18 +33,24 @@
 {"id":15,"first_name":"Gertrud","last_name":"Rozzell","email":"grozzelle@huffingtonpost.com","gender":"Female"}];
 
 var titles = ["id", "first_name", "last_name", "email", "gender", "button"];
-//tr태그를 만들 때 id속성으로 id값을 넣어주고 버튼을 누르면 tr이 사라지게 하는데, 기준을 id값을 기준으로 함.
 var show = document.getElementById("cal");
 
 var $table = document.createElement("table");
 $table.setAttribute("border", "1");
 $table.setAttribute("id","table");
 var $tr = document.createElement("tr");
-for(title of titles){
+$tr.setAttribute("id","title");
+
+for(var i=0; i<titles.length; i++){
+    
     var $th = document.createElement("th");
-    var $text = document.createTextNode(title);
+    var $text = document.createTextNode(titles[i]);
     $th.appendChild($text);
+    if(i % 2 == 0){
+        $th.style.background="#f2f2f2";
+    }
     $tr.appendChild($th);
+    
 }
 $table.appendChild($tr);
 
@@ -54,39 +68,17 @@ for(row of jsonData){
     var $td = document.createElement("td");
     var $button = document.createElement("button");
     $button.innerHTML="Click";
-    $button.setAttribute('BTNid',row.id);
+    $button.onclick = function(){
+        this.parentNode.parentNode.remove();
+    }
 
-    $button.onclick = rmTr;
-    // $button.onclick = function(){//button id와 같은걸 지움.
-        // document.getElementById(this.id).remove();
-    // }
-    // $button.onclick = function(){ //parentNode 이용해서 tr 삭제
-    //     this.parentNode.parentNode.remove();
-    // }
-    //tag의 index번호..
-   
     $td.appendChild($button);
     $tr.appendChild($td);
-        // $button.onmouseup
     $table.appendChild($tr);  
 }
-// function rmTr(){
-//     document.getElementById(this.BTNid).remove();
-//     console.log(this.BTNid);
-// }
 show.appendChild($table);
 
 
-//     //button의 id와 같은 tr을 찾아서 삭제한다.
-//     document.getElementById("table").childNodes[].remove();
-
-//이거 응용해서 해 볼것.
-// document.getElementById(id).remove();
-// var $tr = document.createElement('tr');
-// $tr.setAttribute('id',jsonData.id);
-// $button = document.createElement('button');
-// $button.setAttribute('id',jsonDate);
-// $tr.remove();
     </script>
 </body>
 </html>

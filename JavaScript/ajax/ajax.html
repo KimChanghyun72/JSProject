@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax/ajax.html</title>
+</head>
+<body>
+    <h1>Ajax 요청 페이지</h1>
+    <button id="btn">Click</button>
+    <script>
+        var btn = document.getElementById("btn");
+        btn.onclick = ajaxFunc;
+        function ajaxFunc(){
+            var xhtp = new XMLHttpRequest(); //얘는 무슨 기능하는 객체임?
+            xhtp.onreadystatechange = function(){ //live server로 연결했다는데 경로 설정은 어떻게 해 준거지?
+                // console.log("readyState =>" + xhtp.readyState);
+                // console.log("status => " + xhtp.status);
+                if(xhtp.readyState == 4 && xhtp.status == "200"){ //연결이 정상적으로 되었고 서버 상태도 정상이라면,
+                    // console.log(xhtp.responseText);
+                    var data = JSON.parse(xhtp.responseText); //json을 object로 변환 //문자열->객체로 변한 것을 확인.
+                    console.log(data);  //객체 내의 개별 요소들을 읽어올 수 있음.
+                    data.forEach(function(o,i,a){
+                        document.write(o.id + "<br>");
+                        document.write(o.first_name + "<br>");
+                    });
+                    //==// for(var i=0; i<data.length; i++){
+                        //     document.write(data[i].first_name + "<br>");
+                        // }
+                }
+            }
+             //ajax를 통해 대량의 데이터를 코드에 넣을 필요 없이 가져올 수 있게 됨.
+             //근데 oracle같은 DB서버에는 어떻게 연결할 수 있지?
+             xhtp.open("get","MOCK_DATA.json", true); //MOCK_DATA.json를 가져온다.
+             xhtp.send();
+        }
+    </script>
+</body>
+</html>

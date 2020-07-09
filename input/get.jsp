@@ -12,7 +12,6 @@
 <body>
     <!-- into below syntax statement, you can write java statement. -->
     <%
-    //이 안에 <!-- html 주석처리 하면 오류 뜸 --> 여기는 java주석 
         String user = request.getParameter("user");
         String dept = request.getParameter("dept");
     %>

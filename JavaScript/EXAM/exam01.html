@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam/exam01.html</title>
+</head>
+<body>
+    처음값<input type="text" id="firstVal"><br>
+    마지막값<input type="text" id="lastVal"><br><br>
+    <button onclick="sumAll()">계산</button>
+    <p id="show"></p>
+    <script>
+        function sumAll(){
+            var i = parseInt(document.getElementById("firstVal").value);
+            var end = parseInt(document.getElementById("lastVal").value);
+            var sum =0;
+            for(i; i<=end; i++){
+                sum += i; 
+            }
+            document.getElementById("show").innerHTML=sum;
+        }
+    </script>
+</body>
+</html>
