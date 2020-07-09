@@ -1,0 +1,21 @@
+#title {
+    background-color:green;
+}
+tr:nth-last-child(2n){
+    background-color:#f2f2f2;
+    /* background-color:aqua; */
+}
+tr:nth-last-child(2n):hover{
+    background-color:#ddd;
+    /* background-color:blue; */
+}
+
+/* if(i % 2 == 0){
+    $th.style.background="#f2f2f2";
+}
+#title {
+    background-color:green;
+}
+#title:hover{
+    background-color:#ddd;
+} */

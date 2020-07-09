@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXAM/exam05.html</title>
-    <style>
-        #title {
-            background-color:green;
-        }
-        #title:hover{
-            background-color:#ddd;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="table.css">
 </head>
 <body>
     <p id="cal"></p>
@@ -46,9 +39,6 @@ for(var i=0; i<titles.length; i++){
     var $th = document.createElement("th");
     var $text = document.createTextNode(titles[i]);
     $th.appendChild($text);
-    if(i % 2 == 0){
-        $th.style.background="#f2f2f2";
-    }
     $tr.appendChild($th);
     
 }

@@ -16,7 +16,7 @@
     <button id="btnSubmit">등록</button>
     <br><br>
 
-    학년 보기<select id="subject" onchange="onChangeFunc">
+    학년 보기<select id="subject" onchange="onChangeFunc()">
         <option value="1" selected>1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -35,10 +35,8 @@
             major: "영문과"
         }
         students[0] = student1;
-        function onChangeFunc(){
-            
-        }
-        document.getElementById("btnSubmit").onclick = function () {
+
+        document.getElementById("btnSubmit").onclick = function () { //학생 등록
             var idValue = document.getElementById("idValue").value;
             var nameValue = document.getElementById("nameValue").value;
             var gradeValue = document.getElementById("gradeValue").value;
@@ -52,42 +50,44 @@
             students.push(student);
             console.log(student);//
             console.log(students);//
-        }
-
-
-        //    for(var i=0; i<students.length; i++){
-        //        document.write(students[i].studentNo);
-        //    }
-
+        }//end of 학생등록
 
         var $table = document.createElement("table");
-        $table.setAttribute("border", "1");
+            $table.setAttribute("border", "1");
+            var $tr = document.createElement("tr");     //title create
+            for (elmt in student1) {
+                var $th = document.createElement("th");
+                var $text = document.createTextNode(elmt);
+                $th.appendChild($text);
+                $tr.appendChild($th);
+            }
+            $table.appendChild($tr);
+
+        $show = document.getElementById("show");
         // $table.setAttribute("id","table");
-        var $tr = document.createElement("tr");
-        for (elmt in student1) {
-            var $th = document.createElement("th");
-            var $text = document.createTextNode(elmt);
-            $th.appendChild($text);
-            $tr.appendChild($th);
-        }
-        $table.appendChild($tr);
-        //document.write(gradeVal);
+        function onChangeFunc() {    //onChangeFunc()
 
+            var cnt = $show.children.length; //하위 tr 삭제
+            for (var i = 0; i < cnt; i++) {
+                $show.removeChild($show.firstChild);    //firstChild = 태그의 첫 번째 요소.
+            }
 
-        document.getElementById("check").onclick = function () {
-            //document.getElementById("show")
-            var gradeVal = document.getElementById("subject").value;
-
-            console.log(gradeVal);
+            var gradeVal = document.getElementById("subject").value; //select값 가져오기.
             var filterAry = students.filter(function (o) {
                 return o.grade == gradeVal;
             });
-            // var $table = document.getElementById("table");
-            // // var $show = document.getElementById("show");
-            // var cnt = $table.children.length;
-            // for (var i = 0; i < cnt; i++) {
-            //     $show.removeChild($table.firstChild);    //firstChild = 태그의 첫 번째 요소.
-            // }
+
+            var $table = document.createElement("table");
+            $table.setAttribute("border", "1");
+            var $tr = document.createElement("tr");     //title create
+            for (elmt in student1) {
+                var $th = document.createElement("th");
+                var $text = document.createTextNode(elmt);
+                $th.appendChild($text);
+                $tr.appendChild($th);
+            }
+            $table.appendChild($tr);        //end of create title
+
 
             for (data of filterAry) {
                 var $tr = document.createElement("tr");
@@ -99,8 +99,8 @@
                 }
                 $table.appendChild($tr);
             }
-        }
-        document.getElementById("show").appendChild($table);
+            $show.appendChild($table);
+        } //end of onChangeFunc()
 
     </script>
 </body>
