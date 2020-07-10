@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        var xhtp = new XMLHttpRequest();    //XMLHttpRequest기능, 하위 요소들과 메소드들을 알아보고싶다.
+        xhtp.onreadystatechange = function(){ //open With LiveServer로 여니까 내용 바뀐게 실시간으로 적용되네?
+            if(xhtp.readyState == 4 && xhtp.status =='200') {
+                showXml(this);
+                }            
+        }
+        xhtp.open("get", "cd_catalog.xml");
+        xhtp.send();
+
+        function showXml(x){
+            var datas = x.responseXML;
+                var cds = datas.getElementsByTagName('CD');
+                for(var i=0; i<cds.length; i++){
+                    console.log(cds[i].childNodes[1].childNodes[0].nodeValue);
+                    document.write(cds[i].childNodes[1].childNodes[0].nodeValue + " | " +
+                    cds[i].childNodes[3].childNodes[0].nodeValue + " | " +
+                    cds[i].childNodes[5].childNodes[0].nodeValue + "<br>");
+
+                }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("ul li:first-child").hide();
+    // $("ul li:first").hide();
+
+    // var lis = document.querySelector('ul').querySelectorAll('li:nth-child(1)');
+    // // var lis = document.querySelectorAll("ul")[0].querySelectorAll('li:nth-child(1)');
+    // //var lis = document.querySelectorAll('ul li:first-child');
+    // for(var i=0; i<lis.length; i++){
+    //     lis[i].style.display="none";
+    // }
+  });
+  $('button:last').eq(0).hover(function(){ //hover는 마우스 들어갈때와 빠져나올때 다 함수가 정의되어야 함.
+    $(this).css('background','green');
+  }, function(){
+    $(this).css('background','');
+  });
+
+  $('li').click(function(){
+    $(this).hide();
+  });
+  $('li').mouseenter(function(){
+    $(this).css('background','yellow');
+  });
+  $('li').mouseleave(function(){
+      $(this).css('background','');
+  });
+});
+</script>
+</head>
+<body>
+
+<p>List 1:</p>
+<ul>
+  <li>Coffee</li>
+  <li>Milk</li>
+  <li>Tea</li>
+</ul>
+
+<p>List 2:</p>
+<ul>
+  <li>Coffee</li>
+  <li>Milk</li>
+  <li>Tea</li>
+</ul>
+
+<button>Click me</button> <button>Click me</button>
+
+</body>
+</html>

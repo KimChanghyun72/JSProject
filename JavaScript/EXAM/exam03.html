@@ -16,8 +16,10 @@
 <script>
     var cat3 = document.querySelector("div");
     var cat4 = cat3.querySelectorAll(".name");
-    console.log(cat4);
-    cat4.forEach(function(a){
+    var cat5 = document.querySelectorAll("div > .name");
+
+    console.log(cat5);
+    cat5.forEach(function(a){ //forEach의 요소들(o, i, a)->첫번째것만 필요.
         console.log(a);
     });
     

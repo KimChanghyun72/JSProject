@@ -10,6 +10,9 @@
     마지막값<input type="text" id="lastVal"><br><br>
     <button onclick="sumAll()">계산</button>
     <p id="show"></p>
+    <!-- 교수님 해제 -->
+    <input type="text" id="num1"> + <input type="text" id="num2"> = <input type="text" id="result"><br>
+    <button id="btn">Click</button>
     <script>
         function sumAll(){
             var i = parseInt(document.getElementById("firstVal").value);
@@ -19,6 +22,27 @@
                 sum += i; 
             }
             document.getElementById("show").innerHTML=sum;
+        }
+
+    // 교수님 해제
+        document.getElementById("btn").onclick = function(){
+            //(1)
+            var inputs = document.getElementsByTagName('input'); //가지고 온 타입이 htmlcollection에 저장.
+            inputs = document.querySelectorAll('body > input');//가져오는 방법은 다양함. nodeList에 저장.
+            console.log(inputs);
+            var num1 = inputs[2].value;
+            var num2 = inputs[3].value;
+            console.log(num1, num2);
+            //(2)
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            num1 = parseInt(num1);
+            num2 = parseInt(num2);
+            var sum = 0;
+            for(var i=num1; i<=num2; i++){
+                sum += i;
+            }
+            document.getElementById('result').value = sum;
         }
     </script>
 </body>

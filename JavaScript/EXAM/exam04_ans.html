@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exam05_ans.html</title>
+</head>
+<body>
+    
+    학번: <input type="text" id="idValue"><br>
+    이름: <input type="text" id="nameValue"><br>
+    <!-- 학년 <input type="text" id="gradeValue"><br> -->
+    학년 <select id="gradeValue">
+            <option value="1" selected>1학년</option>
+            <option value="2">2학년</option>
+            <option value="3">3학년</option>
+            <option value="4">4학년</option>
+    </select><br>
+    전공 <input type="text" id="majorValue"><br>
+    <button id="btnSubmit">등록</button>
+    <br><br>
+    <!-- onchange="onChangeFunc()" -->
+    학년 보기<select id="subject" >
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <p id="show" ></p>   
+    <script>
+         var students = []; //학생객체 담을 배열 선언
+        var student1 = { //예시로 넣을 학생객체 1
+            studentNo: 101,
+            name: "홍길동",
+            grade: 1,
+            major: "영문과"
+        }
+        students[0] = student1;
+        var student1 = { //예시로 넣을 학생객체 1
+            studentNo: 201,
+            name: "홍길동",
+            grade: 2,
+            major: "영문과"
+        }
+        students[1] = student1;
+        var student1 = { //예시로 넣을 학생객체 1
+            studentNo: 301,
+            name: "홍길동",
+            grade: 3,
+            major: "영문과"
+        }
+        students[2] = student1;
+        var student1 = { //예시로 넣을 학생객체 1
+            studentNo: 401,
+            name: "홍길동",
+            grade: 4,
+            major: "영문과"
+        }
+        students[3] = student1;
+
+            var $show = document.getElementById("show");
+            console.log(students.length);
+            students.forEach(function (a){
+                var $li = document.createElement('li');
+                var $text = document.createTextNode(a.studentNo + " " + a.name + " " + a.grade);
+                $li.appendChild($text);
+                show.appendChild($li);
+            });
+        
+        document.getElementById("btnSubmit").onclick = function () { //학생 등록
+            var studentNo = document.getElementById("idValue").value;
+            var name = document.getElementById("nameValue").value;
+            var grade = document.getElementById("gradeValue").value;
+            var major = document.getElementById("majorValue").value;
+            var student = {
+                studentNo: studentNo,
+                name: name,
+                grade: grade,
+                major: major
+            }
+            students.push(student);
+            console.log(student);//
+            console.log(students);//
+
+            // var show_li = document.querySelectorAll("#show > li");
+            
+            // show_li.forEach(function(o){ //id=show의 자식인 li tag 각자를 삭제.
+            //     o.remove();
+            // });
+            var show_li = document.querySelectorAll("#show > li");
+            
+            show_li.forEach(function(o){ //id=show의 자식인 li tag 각자를 삭제.
+                o.remove();
+            });
+
+            var $show = document.getElementById("show");
+            students.forEach(function (a){
+                var $li = document.createElement('li');
+                var $text = document.createTextNode(a.studentNo + " " + a.name + " " + a.grade);
+                $li.appendChild($text);
+                show.appendChild($li);
+            });
+
+        }
+
+        //교수님 해제(참고용) //보여주기 하다가 다시 추가하기 넣어보기. 내거랑 교수님거랑 섞여서 보기 힘들다..
+        document.getElementById('subject').onchange = function(){
+            var grade = this.value           
+            var filterStudents = students.filter(function(o){ //.this == students
+                return o.grade == grade;           
+            });
+            //console.log(filterStudents);
+            var show = document.getElementById("show");
+            var show_li = document.querySelectorAll("#show > li");
+            
+            show_li.forEach(function(o){ //id=show의 자식인 li tag 각자를 삭제.
+                o.remove();
+            });
+
+            filterStudents.forEach(function (a){
+                var $li = document.createElement('li');
+                var $text = document.createTextNode(a.studentNo + " " + a.name);
+                $li.appendChild($text);
+                show.appendChild($li);
+            });
+        }
+    </script>
+</body>
+</html>

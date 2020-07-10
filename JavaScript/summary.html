@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/summary.html</title>
+</head>
+<body>
+    <h1 id="h1">Hello</h1>
+    <h2>Hello</h2>
+    <h3>Hello</h3>
+    <h1 id="h2">Hello</h1>
+    <script>
+        var person = {
+            name: "Hong",
+            age: 20,
+            address: "Daegu"
+        }
+        console.log(person.name);
+        person.name = "Hwang";
+        console.log(person.name);
+
+        for(p in person){ //여기서는 of쓰면 에러남. 왜냐 객체 요소 쓸때는 in쓰니까
+            console.log(p);
+        }
+
+
+
+        cnt = 2;
+        var strAry = [1,2,3,4,5];
+        var sum = 0;
+        // for(var i=0; i<strAry.length; i++){
+        //     sum += i;
+        // }
+        strAry.push(6);
+        strAry.push(7);
+        strAry.forEach(function(o){
+            document.write("배열값" + o + ",누적값:" + sum + "<br>");
+            sum += o;
+        });
+        console.log(sum);
+        
+        for(var i=1; i<=9; i++){
+            document.write(cnt + " * " + i + " = " + cnt*i + "<br>");
+            if(i==9 && cnt<9){
+                i=0;
+                cnt++;
+            }
+        }
+
+
+        var sum =0;
+        sum +=100;
+        document.write(sum);
+
+
+
+        console.log(this);
+        var body_h1 = document.querySelectorAll("body > h1"); //querySelector는 가져온 요소를 nodeList에 저장함.
+        
+        body_h1.forEach(function(o){
+            console.log(o);
+            o.onclick = function(){
+                o.style.background = 'yellow';
+            }
+        });
+        
+        // document.querySelectorAll("body > h1")[0].onclick = function(){
+        //     this.style.background = "yellow";
+        // }
+        // document.querySelectorAll("body > h1")[1].onclick = function(){
+        //     this.style.background = "aqua";
+        // }
+        document.getElementsByTagName('h1')[0].innerHTML = "World";
+    </script>
+</body>
+</html>
