@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="show" onclick="(function(){
+        document.addEventListener('keydown', function(e){
+        const keyCode = e.keyCode;
+        console.log('pushed key ' + e.key);
+    
+        if(keyCode == 13){ // Enter key
+          document.dispatchEvent(new KeyboardEvent('keydown', {key: 'e'}));
+          // document.dispatchEvent(new KeyboardEvent('keyup', {key: 'e'}));
+        } else if(keyCode == 9){ // Tab key
+          document.dispatchEvent(new KeyboardEvent('keydown', {key: 't'}));
+          // document.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
+        }
+      })"></p>
+    <script>
+        (function(){
+    document.addEventListener('keydown', function(e){
+    const keyCode = e.keyCode;
+    console.log('pushed key ' + e.key);
+
+    if(keyCode == 13){ // Enter key
+      document.dispatchEvent(new KeyboardEvent('keydown', {key: 'e'}));
+      // document.dispatchEvent(new KeyboardEvent('keyup', {key: 'e'}));
+    } else if(keyCode == 9){ // Tab key
+      document.dispatchEvent(new KeyboardEvent('keydown', {key: 't'}));
+      // document.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
+    } else 
+
+    
+  })
+})();
+    </script>
+    
+</body>
+</html>

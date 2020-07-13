@@ -8,7 +8,7 @@
     <script>
         $(document).ready(function(){
             var $table = $('<table />').attr('border','1').css('background','aqua'); //==document.createElement('table');
-            
+
             var $th = $('<tr />').append(
                 $('<th />').text('학번'),
                 $('<th />').text('이름'),
@@ -33,6 +33,12 @@
             $table.append($tr);
             $('#show').append($table);
         });
+        $(document).ready(function(){
+            $("button").click(function(){
+                // $(this).parentsUntil("table").remove();
+                $("table").children("tr:nth-child(2)").remove();
+            });
+        })
     </script>
 </head>
 <body>
